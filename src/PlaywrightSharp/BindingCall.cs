@@ -10,25 +10,8 @@ using PlaywrightSharp.Transport.Protocol;
 
 namespace PlaywrightSharp
 {
-    internal class BindingCall : ChannelOwnerBase, IChannelOwner<BindingCall>
+    internal partial class BindingCall : ChannelOwnerBase, IChannelOwner<BindingCall>
     {
-        private readonly BindingCallChannel _channel;
-        private readonly BindingCallInitializer _initializer;
-
-        public BindingCall(IChannelOwner parent, string guid, BindingCallInitializer initializer) : base(parent, guid)
-        {
-            _channel = new BindingCallChannel(guid, parent.Connection, this);
-            _initializer = initializer;
-        }
-
-        public string Name => _initializer.Name;
-
-        /// <inheritdoc/>
-        ChannelBase IChannelOwner.Channel => _channel;
-
-        /// <inheritdoc/>
-        IChannel<BindingCall> IChannelOwner<BindingCall>.Channel => _channel;
-
         internal async Task CallAsync(Delegate binding)
         {
             try

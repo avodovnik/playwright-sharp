@@ -9,28 +9,22 @@ using PlaywrightSharp.Transport.Protocol;
 namespace PlaywrightSharp
 {
     /// <inheritdoc cref="IBrowser"/>
-    public class Browser : ChannelOwnerBase, IChannelOwner<Browser>, IBrowser
+    public class Browser : IBrowser
     {
-        private readonly BrowserInitializer _initializer;
-        private readonly TaskCompletionSource<bool> _closedTcs = new TaskCompletionSource<bool>();
-        private bool _isClosedOrClosing;
+        //private readonly BrowserInitializer _initializer;
+        //private readonly TaskCompletionSource<bool> _closedTcs = new TaskCompletionSource<bool>();
+        //private bool _isClosedOrClosing;
 
-        internal Browser(IChannelOwner parent, string guid, BrowserInitializer initializer) : base(parent, guid)
-        {
-            Channel = new BrowserChannel(guid, parent.Connection, this);
-            IsConnected = true;
-            Channel.Closed += (sender, e) => DidClose();
-            _initializer = initializer;
-        }
+        //internal Browser(IChannelOwner parent, string guid, BrowserInitializer initializer) : base(parent, guid)
+        //{
+        //    Channel = new BrowserChannel(guid, parent.Connection, this);
+        //    IsConnected = true;
+        //    Channel.Closed += (sender, e) => DidClose();
+        //    _initializer = initializer;
+        //}
 
         /// <inheritdoc/>
         public event EventHandler Disconnected;
-
-        /// <inheritdoc/>
-        ChannelBase IChannelOwner.Channel => Channel;
-
-        /// <inheritdoc/>
-        IChannel<Browser> IChannelOwner<Browser>.Channel => Channel;
 
         /// <inheritdoc/>
         public bool IsConnected { get; private set; }
