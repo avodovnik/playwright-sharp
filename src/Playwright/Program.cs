@@ -28,6 +28,7 @@ using System.IO;
 using System.Threading;
 using Microsoft.Playwright.Helpers;
 
+#pragma warning disable CS1591, SA1600 // Missing XML comment for publicly visible type or member
 namespace Microsoft.Playwright
 {
     public class Program
@@ -106,4 +107,5 @@ namespace Microsoft.Playwright
             return 0;
         }
     }
+#pragma warning restore CS1591, SA1600 // Missing XML comment for publicly visible type or member
 }
